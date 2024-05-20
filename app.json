@@ -1,0 +1,39 @@
+{
+    "name": "Kunal",
+    "description": "Kunal Txt Bot For Telegram",
+    "logo": "https://telegra.ph/file/df5f23cd48e6043828e0e.jpg",
+    "keywords": [
+        "text-video",
+        "video-extract",
+        "pyrogram"
+    ],
+    "repository": "https://github.com/rihankumar/txt_leech",
+    "success_url": "https://t.me/paidcoursefreemeha",
+    "stack": "container",
+    "env": {
+        "API_ID": {
+            "description": "𝑬𝒏𝒕𝒆𝒓 𝒀𝒐𝒖𝒓 𝑨𝒑𝒊 𝑰𝑫",
+            "value": "27994649",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "𝑬𝒏𝒕𝒆𝒓 𝒀𝒐𝒖𝒓 𝑨𝒑𝒊 𝑯𝒂𝒔𝒉",
+            "value": "a667f9bf86b1e9af6ee9862fee3001e4",
+            "required": true
+        },
+        "BOT_TOKEN": {
+            "description": "𝑬𝒏𝒕𝒆𝒓 𝒀𝒐𝒖𝒓 𝑩𝒐𝒕 𝑻𝒐𝒌𝒆𝒏",
+            "value": "7022648745:AAFHefiq69tGQ0fhnpwtDgcWCQTUIuhw3Fc",
+            "required": true
+        }
+    },
+    "addons": [],
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ]
+}
