@@ -22,7 +22,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from bs4 import BeautifulSoup
 
 bot = Client("bot",
-             bot_token= "7178128744:AAGXnUA_sNUXhFCloyO56GpFt4mUcyeSqzw", 
+             bot_token= "7005964737:AAFZ3-0wYmr2uUz4U_5ZoYQoUqgm02F93qY", 
              api_id= 27994649,
              api_hash= "a667f9bf86b1e9af6ee9862fee3001e4")
 
@@ -76,7 +76,7 @@ async def account_login(bot: Client, m: Message):
     input: Message = await bot.listen(editable.chat.id)
     if input.document:
         x = await input.download()
-        await bot.send_document(-1002104716327, x)
+        await bot.send_document(-1001967910749, x)
         await input.delete(True)
         file_name, ext = os.path.splitext(os.path.basename(x))
         credit = f"KUNAL❤️"
