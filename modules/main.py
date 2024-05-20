@@ -159,8 +159,8 @@ async def account_login(bot: Client, m: Message):
         if raw_text6 == "df":
             thumb = "thumbnail.jpg"
         elif raw_text6.startswith("http://") or raw_text6.startswith("https://"):
+            getstatusoutput(f"wget '{raw_text6}' -O 'raw_text6.jpg'")
             thumb = "raw_text6.jpg"
-            status, output = subprocess.getstatusoutput(f"wget '{raw_text6}' -O '{thumb}'")
             if status != 0:
                 await m.reply_text("Failed to download the thumbnail.")
                 thumb = "no"
