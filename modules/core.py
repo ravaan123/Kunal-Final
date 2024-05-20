@@ -193,8 +193,7 @@ async def send_doc(bot: Client, m: Message,cc,ka,cc1,prog,count,name):
 async def send_vid(bot: Client, m: Message, cc, filename, thumb, name, prog):
     subprocess.run(f'ffmpeg -i "{filename}" -ss 00:00:12 -vframes 1 "{filename}.jpg"', shell=True)
     await prog.delete (True)
-    # Send the modified video
-    reply = await m.reply_text(f"⬆️**Uᴘʟᴏᴀᴅɪɴɢ** » `{name}`\n **Bot Made By KUNAL❤️\n**")
+    reply = await m.reply_text(f"**Uploading ...** - `{name}`")
     try:
         if thumb == "no":
             thumbnail = f"{filename}.jpg"
@@ -203,18 +202,35 @@ async def send_vid(bot: Client, m: Message, cc, filename, thumb, name, prog):
     except Exception as e:
         await m.reply_text(str(e))
 
-    # Extract duration of the video
-    video_duration = duration(filename)
-    dur = int(video_duration)
+    dur = int(duration(filename))
 
     start_time = time.time()
 
     try:
-        await m.reply_video(f"{filename}_temp.mp4", caption=cc, supports_streaming=True, height=720, width=1280, thumb=thumbnail, duration=dur, progress=progress_bar, progress_args=(reply, start_time))
+        await m.reply_video(filename,caption=cc, supports_streaming=True,height=720,width=1280,thumb=thumbnail,duration=dur, progress=progress_bar,progress_args=(reply,start_time))
     except Exception:
-        await m.reply_document({filename}, caption=cc, progress=progress_bar, progress_args=(reply, start_time))
+        await m.reply_document(filename,caption=cc, progress=progress_bar,progress_args=(reply,start_time))
 
-    # Clean up temporary files
+    
     os.remove(filename)
-    os.remove(f"{filename}_temp.mp4")
-    await reply.delete(True)
+
+    os.remove(f"{filename}.jpg")
+    await reply.delete (True)
+    
+def get_video_attributes(file: str):
+    """Returns video duration, width, height"""
+
+    class FFprobeAttributesError(Exception):
+        """Exception if ffmpeg fails to generate attributes"""
+
+    cmd = (
+        "ffprobe -v error -show_entries format=duration "
+        + "-of default=noprint_wrappers=1:nokey=1 "
+        + "-select_streams v:0 -show_entries stream=width,height "
+        + f" -of default=nw=1:nk=1 '{file}'"
+    )
+    res, out = getstatusoutput(cmd)
+    if res != 0:
+        raise FFprobeAttributesError(out)
+    width, height, dur = out.split("\n")
+    return (int(float(dur)), int(width), int(height))
