@@ -22,7 +22,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from bs4 import BeautifulSoup
 
 bot = Client("bot",
-             bot_token= "7005964737:AAFZ3-0wYmr2uUz4U_5ZoYQoUqgm02F93qY", 
+             bot_token= "6783966003:AAEGgUG0ZjPbQNAFz9bnJ1TKhsgqcQUhS-c", 
              api_id= 27994649,
              api_hash= "a667f9bf86b1e9af6ee9862fee3001e4")
 
